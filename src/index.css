@@ -73,16 +73,17 @@ nav {
   border-radius: 10px;
 }
 
-.stellarForm label, textarea {
+.stellarForm label, .stellarForm textarea {
   margin: 10px;
   outline: none;
   width: 80%;
 }
 
-.stellarForm textarea {
+.stellarForm textarea, input {
   border-radius: 10px;
   border: none;
   padding: 8px;
+  width: 80%
 }
 
 button {

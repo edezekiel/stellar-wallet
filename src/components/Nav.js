@@ -11,6 +11,9 @@ function Nav(props) {
       <Link to="/account">
         <h1>Balance</h1>
       </Link>
+      <Link to="/transaction">
+        <h1>Transaction</h1>
+      </Link>
       <Link to="/create">
         <h1>New Account</h1>
       </Link>
