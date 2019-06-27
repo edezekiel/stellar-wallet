@@ -4,19 +4,20 @@ function StellarForm(props) {
   const [key, setKey] = useState(null);
 
   const handleSubmit = e => {
-    if (e.checkValidity()) {
-      e.preventDefault()
+    e.preventDefault()
+    if (e.target.checkValidity()) {
       props.setAuth(true)
     }
   }
 
   return (
     <form onSubmit={e => handleSubmit(e)} className="stellarForm">
-      <label forHtml="key"><h2>Enter Stellar Key</h2></label>
-        <input
-          type="text"
+      <label htmlFor="key"><h2>Enter Stellar Key</h2></label>
+        <textarea
+          type="textarea"
+          rows="2"
           name="key"
-          value={key}
+          value={key !== null ? key : undefined}
           onChange={e => setKey(e.target.value)}
           required
         />

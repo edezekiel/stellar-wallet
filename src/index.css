@@ -31,15 +31,16 @@ main {
   justify-content: center;
 }
 
-.stellarForm label, input {
+.stellarForm label, textarea {
   margin: 10px;
   outline: none;
 }
 
-.stellarForm input {
+.stellarForm textarea {
   border-radius: 10px;
   border: none;
   padding: 8px;
+  min-width: 30vw;
 }
 
 button {
