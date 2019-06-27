@@ -9,7 +9,7 @@ import Layout from "./Layout";
 
 function TransactionForm(props) {
   const [tx, setTx] = useState({
-    source: null,
+    key: null,
     destination: null,
     amount: null,
     memo: null,
@@ -17,14 +17,13 @@ function TransactionForm(props) {
   });
 
   useEffect(() => {
-    setTx({...tx, source: props.stellar.key})
+    setTx({...tx, key: props.stellar.key})
   }, [props.stellar.key, props.stellar.tx])
 
   const handleSubmit = e => {
     e.preventDefault();
     if (e.target.checkValidity()) {
       props.createTx(tx)
-      console.log(tx)
       createTransaction(tx)
     }
   };
