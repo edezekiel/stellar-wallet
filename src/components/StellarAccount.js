@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
 import getAccountDetails from "../stellarSDK/getAccountDetails";
 
 function StellarAccount(props) {
-  if (props.stellar.key !== null) {
-    getAccountDetails(props.stellar.key)
-  }
+  const [balances, setBalances] = useState(null);
+
+  useEffect(
+    () => {
+      if (props.stellar.key !== null) {
+        getAccountDetails(props.stellar.key)
+        .then(resp => setBalances(resp))
+      }
+    },
+    [props.stellar.key]
+  );
 
   return (
     <section className="stellarAccount">
       <h1>Key:</h1>
-      <p style={{ paddingTop: "20px" }}>{props.stellar.key}</p>
+      {props.stellar.key !== null && balances !== null ? (
+        <section>
+          <p>Balance for account: {props.stellar.key}</p>
+          {balances.map((balance, i) => (
+              <div key={i}>
+                Type: {balance.asset_type}, Balance: {balance.balance}
+              </div>
+            )
+          )}
+        </section>
+      ) : null}
     </section>
   );
 }

@@ -1,5 +1,3 @@
-import StellarSdk from 'stellar-sdk';
-
 export async function createAccount(pair) {
   try {
     const response = await fetch(
