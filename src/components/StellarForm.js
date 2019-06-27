@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 
-import { connect } from 'react-redux';
-import { addKey } from '../redux/actions'
+import { Link } from 'react-router-dom'
+import { connect } from "react-redux";
+import { addKey } from "../redux/actions";
+
+import Layout from "./Layout";
 
 function StellarForm(props) {
   const [key, setKey] = useState(null);
 
   const handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     if (e.target.checkValidity()) {
-      props.addKey(key)
-      props.setAuth(true)
+      props.addKey(key);
+      props.history.push("/account");
     }
-  }
+  };
 
   return (
-    <form onSubmit={e => handleSubmit(e)} className="stellarForm">
-      <label htmlFor="key"><h2>Enter Stellar Key</h2></label>
+    <Layout>
+      <form onSubmit={e => handleSubmit(e)} className="stellarForm">
+        <label htmlFor="key">
+          <h2>Enter Stellar Key</h2>
+        </label>
         <textarea
           type="textarea"
           rows="2"
@@ -25,8 +31,12 @@ function StellarForm(props) {
           onChange={e => setKey(e.target.value)}
           required
         />
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+      <section className="createKeyLink">
+        Don't have a Key? Create one <Link to="/create">here</Link>
+      </section>
+    </Layout>
   );
 }
 
@@ -40,5 +50,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(StellarForm)
+  mapDispatchToProps
+)(StellarForm);
