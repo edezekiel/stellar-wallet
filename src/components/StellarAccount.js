@@ -11,7 +11,8 @@ function StellarAccount(props) {
   useEffect(
     () => {
       if (props.stellar.key !== null) {
-        getAccountDetails(props.stellar.key).then(resp => setBalances(resp));
+        getAccountDetails(props.stellar.key)
+        .then(resp => resp.name === "Error" ? alert(resp) : setBalances(resp));
       }
     },
     [props.stellar.key]

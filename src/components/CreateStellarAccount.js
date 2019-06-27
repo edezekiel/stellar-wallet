@@ -13,7 +13,7 @@ function CreateStellarAccount(props) {
     e.preventDefault();
     const pair = createPair();
     props.addKey(pair.publicKey());
-    createAccount(pair).then(resp => props.history.push("account"));
+    createAccount(pair).then(resp => props.history.push("/account"));
   };
 
   return (
