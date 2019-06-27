@@ -9,10 +9,10 @@ function Nav(props) {
         <h1>Home</h1>
       </Link>
       <Link to="/account">
-        <h1>Account</h1>
+        <h1>Balance</h1>
       </Link>
       <Link to="/create">
-        <h1>Create</h1>
+        <h1>New Account</h1>
       </Link>
     </nav>
   );
