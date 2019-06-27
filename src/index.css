@@ -15,9 +15,41 @@ main {
 .stellar {
   min-height: 20vh;
   min-width: 40vw;
-  background-color: powderblue;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.stellarForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stellarForm label, input {
+  margin: 10px;
+  outline: none;
+}
+
+.stellarForm input {
+  border-radius: 10px;
+  border: none;
+  padding: 8px;
+}
+
+button {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+@media (max-width: 800px) {
+  .stellar {
+    width: 60vw;
+  }
 }
