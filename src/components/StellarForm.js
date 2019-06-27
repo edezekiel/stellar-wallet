@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 
+import { connect } from 'react-redux';
+import { addKey } from '../redux/actions'
+
 function StellarForm(props) {
   const [key, setKey] = useState(null);
 
   const handleSubmit = e => {
     e.preventDefault()
     if (e.target.checkValidity()) {
+      props.addKey(key)
       props.setAuth(true)
     }
   }
+
+  console.log(props.stellar)
 
   return (
     <form onSubmit={e => handleSubmit(e)} className="stellarForm">
@@ -26,4 +32,15 @@ function StellarForm(props) {
   );
 }
 
-export default StellarForm
+const mapStateToProps = (state, ownProps) => ({
+  stellar: state.stellar
+});
+
+const mapDispatchToProps = dispatch => ({
+  addKey: key => dispatch(addKey(key))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StellarForm)
