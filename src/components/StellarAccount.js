@@ -22,31 +22,34 @@ function StellarAccount(props) {
 
   return (
     <Layout>
-      <div >
-        {props.stellar.key !== null && balances !== null ? (
-          <section className="stellarAccount">
-            <div>Balance for account: {props.stellar.key}</div>
-            {balances.map((balance, i) => (
+      <section className="stellarAccount">
+        <h2>Account:</h2>
+        <h4>
+          {props.stellar.key !== null ? (
+            props.stellar.key
+          ) : (
+            <h1>
+              <Link to="/">Enter</Link> Your Stellar Key
+            </h1>
+          )}
+        </h4>
+        <h2>Balance:</h2>
+        {balances !== null
+          ? balances.map((balance, i) => (
               <div key={i}>
                 Type: {balance.asset_type}, Balance: {balance.balance}
               </div>
-            ))}
-          </section>
-        ) : (
-          <h1>
-            Please <Link to="/">Enter</Link> Your Stellar Key
-          </h1>
-        )}
-      </div>
-      <section>
+            ))
+          : null}
+
+        <h2>Last Transaction:</h2>
         {props.stellar.tx !== null ? (
-          <section>
-            <h2>Last Transaction</h2>
+          <>
             <div>Destination: {props.stellar.tx.destination}</div>
             <div>Amount: {props.stellar.tx.amount}</div>
             <div>Memo: {props.stellar.tx.memo}</div>
             <div>Timeout: {props.stellar.tx.timeout}</div>
-          </section>
+          </>
         ) : null}
       </section>
     </Layout>
