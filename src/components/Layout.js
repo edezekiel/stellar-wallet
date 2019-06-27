@@ -1,7 +1,14 @@
 import React from "react";
 
+import Nav from "./Nav";
+
 function Layout(props) {
-  return <main className="layout">{props.children}</main>;
+  return (
+    <div className="layout">
+      <Nav />
+      {props.children}
+    </div>
+  );
 }
 
 export default Layout;

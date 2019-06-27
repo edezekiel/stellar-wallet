@@ -3,18 +3,26 @@
   padding: 0
 }
 
-main {
+.layout {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh;
+  width: 60vw;
+  margin: 0 auto;
   background-color: white;
+}
+
+nav {
+  width: 100%;
+  margin: 10vh 0 20vh 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .createStellarAccount {
   min-height: 20vh;
-  min-width: 40vw;
+  width: 100%;
   background-color: black;
   color: white;
   border-radius: 10px;
@@ -26,10 +34,10 @@ main {
 
 .stellarForm {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60vw;
   background: black;
   color: white;
   border-radius: 10px;
@@ -37,7 +45,6 @@ main {
 
 .createKeyLink {
   min-height: 20vh;
-  min-width: 40vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,6 +53,7 @@ main {
 
 .stellarAccount {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -53,7 +61,6 @@ main {
   background: black;
   color: white;
   height: 30vh;
-  min-width: 50vw;
   border-radius: 10px;
 }
 
@@ -66,7 +73,6 @@ main {
   border-radius: 10px;
   border: none;
   padding: 8px;
-  min-width: 30vw;
 }
 
 button {
