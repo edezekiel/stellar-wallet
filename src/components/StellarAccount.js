@@ -1,9 +1,17 @@
 import React from 'react'
 
+import { connect } from 'react-redux';
+
 function StellarAccount(props) {
   return (
-    <div>Stellar Account</div>
+    <div>Key: {props.stellar.key}</div>
   )
 }
 
-export default StellarAccount
+const mapStateToProps = (state, ownProps) => ({
+  stellar: state.stellar
+});
+
+export default connect(
+  mapStateToProps,
+)(StellarAccount)

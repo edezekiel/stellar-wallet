@@ -14,8 +14,6 @@ function StellarForm(props) {
     }
   }
 
-  console.log(props.stellar)
-
   return (
     <form onSubmit={e => handleSubmit(e)} className="stellarForm">
       <label htmlFor="key"><h2>Enter Stellar Key</h2></label>

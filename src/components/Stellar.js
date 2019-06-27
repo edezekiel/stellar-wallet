@@ -8,8 +8,6 @@ import StellarAccount from "./StellarAccount";
 
 function Stellar(props) {
   const [auth, setAuth] = useState(false);
-
-  console.log(props.stellar.key)
   
   return (
     <div className="stellar">
