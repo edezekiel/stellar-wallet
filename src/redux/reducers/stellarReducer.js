@@ -1,5 +1,6 @@
 const initial = {
-  key: null
+  key: null,
+  tx: null,
 }
 
 export default function stellarReducer(state = initial, action) {
@@ -8,6 +9,11 @@ export default function stellarReducer(state = initial, action) {
       return {
         ...state,
         key: action.key
+      }
+    case 'ADD_TX':
+      return {
+        ...state,
+        tx: action.tx
       }
     default:
       return state
