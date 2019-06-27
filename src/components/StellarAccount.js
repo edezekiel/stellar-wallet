@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { connect } from "react-redux";
+import getAccountDetails from "../stellarSDK/getAccountDetails";
 
 function StellarAccount(props) {
-  useEffect(() => {}, [props.stellar.key]);
+  if (props.stellar.key !== null) {
+    getAccountDetails(props.stellar.key)
+  }
 
   return (
     <section className="stellarAccount">
