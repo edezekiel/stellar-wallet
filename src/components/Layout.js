@@ -6,7 +6,9 @@ function Layout(props) {
   return (
     <div className="layout">
       <Nav />
-      {props.children}
+      <section className="layoutBody">
+        {props.children}
+      </section>
     </div>
   );
 }
