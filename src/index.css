@@ -12,7 +12,7 @@ main {
   background-color: white;
 }
 
-.stellar {
+.createStellarAccount {
   min-height: 20vh;
   min-width: 40vw;
   background-color: black;
@@ -29,6 +29,32 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 60vw;
+  background: black;
+  color: white;
+  border-radius: 10px;
+}
+
+.createKeyLink {
+  min-height: 20vh;
+  min-width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stellarAccount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: black;
+  color: white;
+  height: 30vh;
+  min-width: 50vw;
+  border-radius: 10px;
 }
 
 .stellarForm label, textarea {

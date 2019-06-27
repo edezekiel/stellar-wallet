@@ -1,13 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
+import { BrowserRouter, Route } from "react-router-dom";
 import store from "./redux/store";
 
 import "./index.css";
-import App from "./components/App";
+import StellarForm from "./components/StellarForm"
+import StellarAccount from "./components/StellarAccount"
+import CreateStellarAccount from "./components/CreateStellarAccount";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
-  </Provider>, document.getElementById("root")
+    <BrowserRouter>
+      <main>
+        <Route exact path="/" component={StellarForm} />
+        <Route exact path="/account" component={StellarAccount} />
+        <Route
+          exact
+          path="/create"
+          component={CreateStellarAccount}
+        />
+      </main>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
 );
