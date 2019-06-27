@@ -34,7 +34,7 @@ function StellarForm(props) {
         <button type="submit">Submit</button>
       </form>
       <section className="createKeyLink">
-        Don't have a Key? Create one <Link to="/create">here</Link>
+        Don't have a Key? <Link to="/create">Create a Stellar Key</Link>
       </section>
     </Layout>
   );
