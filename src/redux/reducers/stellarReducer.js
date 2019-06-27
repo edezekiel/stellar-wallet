@@ -10,7 +10,7 @@ export default function stellarReducer(state = initial, action) {
         ...state,
         key: action.key
       }
-    case 'ADD_TX':
+    case 'CREATE_TX':
       return {
         ...state,
         tx: action.tx

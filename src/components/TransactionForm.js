@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addTx } from "../redux/actions";
+import { createTx } from "../redux/actions";
+import { createTransaction } from "../stellarSDK/createTransaction";
 
 import Layout from "./Layout";
 
@@ -22,9 +23,9 @@ function TransactionForm(props) {
   const handleSubmit = e => {
     e.preventDefault();
     if (e.target.checkValidity()) {
-      props.addTx(tx)
-      console.log(props.stellar.tx)
-      props.history.push('/account')
+      props.createTx(tx)
+      console.log(tx)
+      createTransaction(tx)
     }
   };
 
@@ -86,7 +87,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addTx: tx => dispatch(addTx(tx))
+  createTx: tx => dispatch(createTx(tx))
 });
 
 export default connect(
