@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -8,7 +9,7 @@ body {
   color: rgb(117, 251, 76);
 }
 
-body, main, .layout, nav {
+body, main, .layout, nav, .stellarForm {
   border: 1px solid rgb(117, 251, 76);
 }
 
@@ -22,12 +23,12 @@ body, main, .layout, nav {
 }
 
 .layoutBody {
-  margin-top: 10vh;
+  margin: 10vh 0 20vh 0;
   width: 100%;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 10px;
 }
 
 a {
@@ -55,6 +56,7 @@ nav {
   justify-content: center;
   border-radius: 10px;
   margin-top: 5vh;
+  padding: 10px;
 }
 
 .formTitle {

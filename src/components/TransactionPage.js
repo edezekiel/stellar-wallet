@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 
 import Layout from "./Layout";
 import PaymentForm from "./PaymentForm";
-
-import createEscrowAccount from "../stellarSDK/createEscrowAccount";
+import CreateEscrowAccountForm from "./CreateEscrowAccountForm";
 
 function TransactionPage(props) {
   return (
@@ -20,12 +19,7 @@ function TransactionPage(props) {
           <h1>Your Account: </h1>
           <h2>{props.stellar.secretKey.slice(0, 10) + "..."}</h2>
           <PaymentForm />
-          <button
-            className="formSubmitButton"
-            onClick={() => createEscrowAccount(props.stellar.secretKey)}
-          >
-            Create Escrow Account
-          </button>
+          <CreateEscrowAccountForm />
         </>
       )}
     </Layout>
