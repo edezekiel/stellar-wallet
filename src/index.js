@@ -8,6 +8,7 @@ import "./index.css";
 import StellarHome from "./components/StellarHome";
 import StellarAccount from "./components/StellarAccount";
 import TransactionPage from "./components/TransactionPage";
+import EscrowPage from "./components/EscrowPage";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -16,6 +17,7 @@ ReactDOM.render(
         <Route exact path="/" component={StellarHome} />
         <Route exact path="/account" component={StellarAccount} />
         <Route exact path="/transaction" component={TransactionPage} />
+        <Route exact path="/escrow" component={EscrowPage} />
       </main>
     </BrowserRouter>
   </Provider>,

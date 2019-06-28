@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import getAccountDetails from "../stellarSDK/getAccountDetails";
-import getTxHistory from "../stellarSDK/transactionHistory";
+import getTxHistory from "../stellarSDK/getTxHistory";
 
 import Layout from "./Layout";
 import AccountHeader from "./AccountHeader";
@@ -18,14 +17,13 @@ function StellarAccount(props) {
         getAccountDetails(props.stellar.secretKey).then(resp =>
           resp.name === "Error" ? alert(resp) : setBalances(resp)
         );
-        getTxHistory(props.stellar.secretKey).then(resp =>
-          resp.name === "Error" ? alert(resp) : setTxHistory(resp)
-        );
-        console.log(balances, txHistory);
+        getTxHistory(props.stellar.secretKey);
       }
     },
-    [props.stellar]
+    [props.stellar, txHistory]
   );
+
+  console.log(props.stellar);
 
   return (
     <Layout>
@@ -40,13 +38,6 @@ function StellarAccount(props) {
               </div>
             ))
           : null}
-      </section>
-
-      <section className="stellarAccount">
-        <h2>Transaction History:</h2>
-        {props.stellar !== null && props.stellar.secretKey !== null ? (
-          <p>Your transaction history</p>
-        ) : null}
       </section>
     </Layout>
   );
