@@ -4,7 +4,7 @@ function PaymentForm(props) {
   return (
     <form onSubmit={e => props.createPayment(e)} className="stellarForm">
       <label>
-        <h2 className="formTitle">Payment Form</h2>
+        <h2 className="formTitle">Simple Payment Form</h2>
       </label>
       <label htmlFor="destination">
         <h2>*Destination (Key)</h2>
