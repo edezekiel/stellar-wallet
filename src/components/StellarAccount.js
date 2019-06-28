@@ -39,6 +39,13 @@ function StellarAccount(props) {
             ))
           : null}
       </section>
+
+      <section className="stellarAccount">
+        <h2>Most Recent Escrow Account:</h2>
+        {props.stellar !== null && props.stellar.escrowPair !== null ? (
+          <div>{props.stellar.escrowPair.publicKey()}</div>
+        ) : null}
+      </section>
     </Layout>
   );
 }

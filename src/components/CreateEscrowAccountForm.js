@@ -20,7 +20,7 @@ function CreateEscrowAccountForm(props) {
     alert("Please wait, the Escrow Account is being created");
     createEscrowAccount(props.stellar.secretKey)
       .then(resp => conditionallySetEscrowPair(resp))
-      .then(props.history.push("/escrow"));
+      .then(props.history.push("/account"));
   };
 
   return (

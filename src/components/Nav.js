@@ -14,9 +14,6 @@ function Nav(props) {
       <Link to="/transaction">
         <h1>Transactions</h1>
       </Link>
-      <Link to="/escrow">
-        <h1>Escrow</h1>
-      </Link>
     </nav>
   );
 }
