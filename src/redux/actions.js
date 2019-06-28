@@ -1,7 +1,4 @@
-export const addKey = key => {
-  return { type: "ADD_KEY", key: key };
-};
-
-export const createTx = tx => {
-  return { type: "CREATE_TX", tx: tx };
+// Stellar Reducer
+export const addSecretKey = secretKey => {
+  return { type: "ADD_SECRET_KEY", secretKey: secretKey };
 };

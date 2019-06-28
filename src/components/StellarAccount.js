@@ -11,25 +11,24 @@ function StellarAccount(props) {
 
   useEffect(
     () => {
-      if (props.stellar.key !== null) {
-        getAccountDetails(props.stellar.key).then(resp =>
+      if (props.stellar !== null && props.stellar.secretKey !== null) {
+        getAccountDetails(props.stellar.secretKey).then(resp =>
           resp.name === "Error" ? alert(resp) : setBalances(resp)
         );
       }
-    },
-    [props.stellar.key]
+    }, [props.stellar]
   );
 
   return (
     <Layout>
-      {props.stellar.key === null ? (
+      {props.stellar === null || props.stellar.secretKey === null ? (
         <h1>
           <Link to="/">Enter</Link> Your Stellar Key
         </h1>
       ) : (
         <>
           <h1>Your Account: </h1>
-          <h2>{props.stellar.key.slice(0, 10) + "..."}</h2>
+          <h2>{props.stellar.secretKey.slice(0, 10) + "..."}</h2>
         </>
       )}
 
@@ -44,17 +43,6 @@ function StellarAccount(props) {
           : null}
       </section>
 
-      <section className="stellarAccount">
-        <h2>Last Transaction:</h2>
-        {props.stellar.tx !== null ? (
-          <>
-            <div>Destination: {props.stellar.tx.destination}</div>
-            <div>Amount: {props.stellar.tx.amount}</div>
-            <div>Memo: {props.stellar.tx.memo}</div>
-            <div>Timeout: {props.stellar.tx.timeout}</div>
-          </>
-        ) : null}
-      </section>
     </Layout>
   );
 }

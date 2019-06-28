@@ -1,9 +1,9 @@
 import StellarSdk from "stellar-sdk";
 
-export default async function createPayment(tx) {
+export default async function createPayment(secretKey, paymentTx) {
   StellarSdk.Network.useTestNetwork();
   const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
-  const sourceKeys = StellarSdk.Keypair.fromSecret(tx.key);
+  const sourceKeys = StellarSdk.Keypair.fromSecret(secretKey);
   const baseFee = await server.fetchBaseFee();
 
   const account = await server.loadAccount(sourceKeys.publicKey());
@@ -11,12 +11,12 @@ export default async function createPayment(tx) {
   const transaction = new StellarSdk.TransactionBuilder(account, { fee: baseFee })
     .addOperation(
       StellarSdk.Operation.payment({
-        destination: tx.destination,
+        destination: paymentTx.destination,
         asset: StellarSdk.Asset.native(),
-        amount: tx.amount
+        amount: paymentTx.amount
       })
     )
-    .addMemo(StellarSdk.Memo.text(tx.memo))
+    .addMemo(StellarSdk.Memo.text(paymentTx.memo))
     .setTimeout(180)
     .build();
 
@@ -24,8 +24,7 @@ export default async function createPayment(tx) {
 
   try {
     const transactionResult = await server.submitTransaction(transaction);
-    console.log("Success! Results:");
-    return transactionResult
+    console.log("Success! Results:", transactionResult);
   } catch (error) {
     console.error("Something went wrong!", error);
   }

@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import createPayment from "../stellarSDK/createPayment";
 
 function PaymentForm(props) {
+  const [paymentTx, setPaymentTx] = useState({
+    destination: null,
+    amount: null,
+    memo: null,
+    timeout: null
+  });
+
+  const createPaymentTX = e => {
+    e.preventDefault();
+    if (e.target.checkValidity()) {
+      createPayment(props.stellar.secretKey, paymentTx).then(resp =>
+        props.history.push("/account")
+      );
+    }
+  };
+
   return (
-    <form onSubmit={e => props.createPaymentTx(e)} className="stellarForm">
+    <form onSubmit={e => createPaymentTX(e)} className="stellarForm">
       <label>
         <h2 className="formTitle">Simple Payment Form</h2>
       </label>
@@ -12,7 +33,9 @@ function PaymentForm(props) {
       <input
         type="text"
         name="destination"
-        onChange={e => props.setTx({ ...props.tx, destination: e.target.value })}
+        onChange={e =>
+          setPaymentTx({ ...paymentTx, destination: e.target.value })
+        }
         required
       />
       <label htmlFor="amount">
@@ -21,7 +44,7 @@ function PaymentForm(props) {
       <input
         type="text"
         name="amount"
-        onChange={e => props.setTx({ ...props.tx, amount: e.target.value })}
+        onChange={e => setPaymentTx({ ...paymentTx, amount: e.target.value })}
         required
       />
       <label htmlFor="memo">
@@ -30,7 +53,7 @@ function PaymentForm(props) {
       <input
         type="text"
         name="memo"
-        onChange={e => props.setTx({ ...props.tx, memo: e.target.value })}
+        onChange={e => setPaymentTx({ ...paymentTx, memo: e.target.value })}
       />
       <label htmlFor="timeout">
         <h2>Timeout</h2>
@@ -38,7 +61,7 @@ function PaymentForm(props) {
       <input
         type="text"
         name="timeout"
-        onChange={e => props.setTx({ ...props.tx, timeout: e.target.value })}
+        onChange={e => setPaymentTx({ ...paymentTx, timeout: e.target.value })}
         required
       />
       <button type="submit">Submit</button>
@@ -46,4 +69,8 @@ function PaymentForm(props) {
   );
 }
 
-export default PaymentForm;
+const mapStateToProps = (state, ownProps) => ({
+  stellar: state.stellar
+});
+
+export default withRouter(connect(mapStateToProps)(PaymentForm));

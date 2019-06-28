@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
 import { withRouter } from "react-router-dom";
+
 import { connect } from "react-redux";
-import { addKey } from "../redux/actions";
+import { addSecretKey } from "../redux/actions";
+
 import { createAccount } from "../stellarSDK/createAccount";
 import { createPair } from "../stellarSDK/createPair";
 
@@ -14,7 +16,7 @@ function StellarHome(props) {
   const handleSubmit = e => {
     e.preventDefault();
     if (e.target.checkValidity()) {
-      props.addKey(key);
+      props.addSecretKey(key);
       props.history.push("/account");
     }
   };
@@ -22,7 +24,7 @@ function StellarHome(props) {
   const createStellarAccount = e => {
     e.preventDefault();
     const pair = createPair();
-    props.addKey(pair.secret());
+    props.addSecretKey(pair.secretKey());
     createAccount(pair)
       .then(alert("Please Wait, your Stellar account is being created."))
       .then(resp => props.history.push("/account"));
@@ -60,11 +62,11 @@ function StellarHome(props) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  stellar: state.stellar
+  stellar: state.stellar,
 });
 
 const mapDispatchToProps = dispatch => ({
-  addKey: key => dispatch(addKey(key))
+  addSecretKey: secretKey => dispatch(addSecretKey(secretKey))
 });
 
 export default withRouter(

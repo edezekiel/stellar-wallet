@@ -2,9 +2,9 @@ import StellarSdk from "stellar-sdk";
 
 const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
 
-async function getAccountDetails(key) {
+async function getAccountDetails(secretKey) {
   try {
-    const publicKey = StellarSdk.Keypair.fromSecret(key).publicKey()
+    const publicKey = StellarSdk.Keypair.fromSecret(secretKey).publicKey()
     const account = await server.loadAccount(publicKey);
     console.log("Balance for account: " + publicKey);
     const balances = [];

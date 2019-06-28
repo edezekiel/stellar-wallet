@@ -1,13 +1,15 @@
-import StellarSdk from "stellar-sdk";
+import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 
-export default async function createEscrowAccount(key) {
+export default async function createEscrowAccount(secretKey) {
   StellarSdk.Network.useTestNetwork();
   const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
   const baseFee = await server.fetchBaseFee();
-  const sourceKeys = StellarSdk.Keypair.fromSecret(key);
+  const sourceKeys = StellarSdk.Keypair.fromSecret(secretKey);
   const escrowPair = StellarSdk.Keypair.random();
 
-  const transaction = new StellarSdk.TransactionBuilder(sourceKeys, {
+  const account = await server.loadAccount(sourceKeys.publicKey());
+
+  const transaction = new StellarSdk.TransactionBuilder(account, {
     fee: baseFee
   })
     .addOperation(
@@ -16,14 +18,14 @@ export default async function createEscrowAccount(key) {
         startingBalance: "2.5000000"
       })
     )
+    .setTimeout(TimeoutInfinite)
     .build();
 
   transaction.sign(sourceKeys);
 
   try {
     const transactionResult = await server.submitTransaction(transaction);
-    console.log("Success! Results:");
-    return transactionsResult
+    console.log("Success! Results:", transactionResult, "Escrow KeyPair: ", escrowPair.secret(), escrowPair.publicKey());
   } catch (error) {
     console.error("Something went wrong!", error);
   }
