@@ -25,11 +25,11 @@ function TransactionPage(props) {
     [props.stellar.key, props.stellar.tx]
   );
 
-  const createPayment = e => {
+  const createPaymentTx = e => {
     e.preventDefault();
     if (e.target.checkValidity()) {
       props.createTx(tx);
-      createPayment(tx).then(props.history.push("/account"));
+      createPayment(tx).then(resp => props.history.push("/account"));
     }
   };
 
@@ -43,7 +43,7 @@ function TransactionPage(props) {
         <>
           <h1>Your Account: </h1>
           <h2>{props.stellar.key.slice(0, 10) + "..."}</h2>
-          <PaymentForm createPayment={createPayment} setTx={setTx} tx={tx} />
+          <PaymentForm createPaymentTx={createPaymentTx} setTx={setTx} tx={tx} />
         </>
       )}
     </Layout>
