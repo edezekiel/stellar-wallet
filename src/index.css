@@ -41,13 +41,9 @@ nav {
   justify-content: space-between;
 }
 
-.createStellarAccount {
-  min-height: 20vh;
-  width: 100%;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.createAccountButton:hover {
+  background: rgb(117, 251, 76);
+  color: black;
 }
 
 .stellarForm {

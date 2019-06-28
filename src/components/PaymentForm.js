@@ -2,7 +2,7 @@ import React from "react";
 
 function PaymentForm(props) {
   return (
-    <form onSubmit={e => props.handleSubmit(e)} className="stellarForm">
+    <form onSubmit={e => props.createPayment(e)} className="stellarForm">
       <label>
         <h2 className="formTitle">Payment Form</h2>
       </label>
