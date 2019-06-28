@@ -24,8 +24,9 @@ export default async function createEscrowAccount(secretKey) {
   transaction.sign(sourceKeys);
 
   try {
-    const transactionResult = await server.submitTransaction(transaction);
+    const transactionResult = await server.submitTransaction(transaction)
     console.log("Success! Results:", transactionResult, "Escrow KeyPair: ", escrowPair.secret(), escrowPair.publicKey());
+    return escrowPair
   } catch (error) {
     console.error("Something went wrong!", error);
   }

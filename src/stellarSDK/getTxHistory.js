@@ -8,17 +8,12 @@ export default async function getTxHistory(secretKey) {
   server.transactions()
     .forAccount(sourceKeys.publicKey())
     .call()
-    .then(function (page) {
-      console.log("Page 1: ");
-      console.log(page.records);
-      return page.next()
+    .then(function (transactionResult) {
+      //page 1
+      return transactionResult
+      console.log("Page 1", transactionResult.records);
     })
-    .then(function (page) {
-      console.log("Page 2: ");
-      console.log(page.records);
-      return page.next()
-    })
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err)
     })
 }
