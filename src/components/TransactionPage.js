@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createTx } from "../redux/actions";
+import { createTx, addKey } from "../redux/actions";
+
 import createTransaction from "../stellarSDK/createTransaction";
 import { createPair } from "../stellarSDK/createPair";
 import { createAccount } from "../stellarSDK/createAccount";
-import { addKey } from "../redux/actions";
 
 import Layout from "./Layout";
 import PaymentForm from "./PaymentForm";
