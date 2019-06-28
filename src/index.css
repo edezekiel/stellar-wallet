@@ -57,6 +57,7 @@ nav {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  margin-top: 5vh;
 }
 
 .createKeyLink {
@@ -71,12 +72,8 @@ nav {
   display: flex;
   width: 100%;
   flex-direction: column;
-  height: 10vh;
+  margin-top: 5vh;
   border-radius: 10px;
-}
-
-.stellarAccount h2 {
-  margin-top: 2vh;
 }
 
 .stellarForm label, .stellarForm textarea {
