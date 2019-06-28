@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addKey } from "../redux/actions";
+import { createAccount } from "../stellarSDK/createAccount";
+import { createPair } from "../stellarSDK/createPair";
 
 import Layout from "./Layout";
 
@@ -15,6 +17,15 @@ function StellarForm(props) {
       props.addKey(key);
       props.history.push("/account");
     }
+  };
+
+  const createStellarAccount = e => {
+    e.preventDefault();
+    const pair = createPair();
+    props.addKey(pair.secret());
+    createAccount(pair)
+      .then(alert("Please Wait, your Stellar account is being created."))
+      .then(resp => props.history.push("/account"));
   };
 
   return (
@@ -31,11 +42,19 @@ function StellarForm(props) {
           onChange={e => setKey(e.target.value)}
           required
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className="formSubmitButton">Submit</button>
       </form>
-      <section className="createKeyLink">
-        Don't have a Key? <Link to="/create">Create a Stellar Key</Link>
-      </section>
+      <form className="stellarForm">
+        <label>
+        <h2>Don't Have A Key?</h2>
+        </label>
+        <button
+          onClick={e => createStellarAccount(e)}
+          className="formSubmitButton"
+        >
+          Create Stellar Account
+        </button>
+      </form>
     </Layout>
   );
 }
@@ -48,7 +67,9 @@ const mapDispatchToProps = dispatch => ({
   addKey: key => dispatch(addKey(key))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StellarForm);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(StellarForm)
+);

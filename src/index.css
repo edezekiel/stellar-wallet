@@ -24,6 +24,7 @@ body, main, .layout, nav {
 .layoutBody {
   margin-top: 10vh;
   width: 100%;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -41,7 +42,7 @@ nav {
   justify-content: space-around;
 }
 
-.createAccountButton:hover {
+.formSubmitButton:hover {
   background: rgb(117, 251, 76);
   color: black;
 }
@@ -100,7 +101,7 @@ button {
 }
 
 @media (max-width: 800px) {
-  .stellar {
-    width: 60vw;
+  .layout {
+    width: 99vw;
   }
 }

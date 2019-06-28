@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createTx, addKey } from "../redux/actions";
 
-import createTransaction from "../stellarSDK/createTransaction";
-import { createPair } from "../stellarSDK/createPair";
-import { createAccount } from "../stellarSDK/createAccount";
+import createPayment from "../stellarSDK/createPayment";
 
 import Layout from "./Layout";
 import PaymentForm from "./PaymentForm";
@@ -27,17 +25,11 @@ function TransactionPage(props) {
     [props.stellar.key, props.stellar.tx]
   );
 
-  const createStellarAccount = e => {
-    e.preventDefault();
-    const pair = createPair();
-    props.addKey(pair.secret());
-  };
-
   const createPayment = e => {
     e.preventDefault();
     if (e.target.checkValidity()) {
       props.createTx(tx);
-      createTransaction(tx).then(props.history.push("/account"));
+      createPayment(tx).then(props.history.push("/account"));
     }
   };
 
@@ -45,13 +37,7 @@ function TransactionPage(props) {
     <Layout>
       {props.stellar.key === null ? (
         <h1>
-          Please <Link to="/">Enter</Link> Your Stellar Key or{" "}
-          <button
-            onClick={e => createStellarAccount(e)}
-            className="createAccountButton"
-          >
-            Create Stellar Account
-          </button>
+          Please <Link to="/">Enter</Link> Your Stellar Key.
         </h1>
       ) : (
         <>
@@ -70,7 +56,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   createTx: tx => dispatch(createTx(tx)),
-  addKey: key => dispatch(addKey(key))
 });
 
 export default connect(
