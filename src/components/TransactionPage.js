@@ -7,7 +7,6 @@ import createTransaction from "../stellarSDK/createTransaction";
 
 import Layout from "./Layout";
 import PaymentForm from "./PaymentForm";
-import OfferForm from "./OfferForm";
 
 function TransactionPage(props) {
   const [tx, setTx] = useState({
@@ -41,7 +40,6 @@ function TransactionPage(props) {
           <h1>Your Account: </h1>
           <h2>{props.stellar.key.slice(0, 10) + "..."}</h2>
           <PaymentForm handleSubmit={handleSubmit} setTx={setTx} tx={tx} />
-          <OfferForm handleSubmit={handleSubmit} setTx={setTx} tx={tx} />
         </>
       ) : (
         <h1>
