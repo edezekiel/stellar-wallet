@@ -9,6 +9,7 @@ import { createAccount } from "../stellarSDK/createAccount";
 import { createPair } from "../stellarSDK/createPair";
 
 import Layout from "./Layout";
+import AccountHeader from "./AccountHeader";
 
 function StellarHome(props) {
   const [key, setKey] = useState(null);
@@ -24,7 +25,7 @@ function StellarHome(props) {
   const createStellarAccount = e => {
     e.preventDefault();
     const pair = createPair();
-    props.addSecretKey(pair.secretKey());
+    props.addSecretKey(pair.secret());
     createAccount(pair)
       .then(alert("Please Wait, your Stellar account is being created."))
       .then(resp => props.history.push("/account"));
@@ -32,6 +33,7 @@ function StellarHome(props) {
 
   return (
     <Layout>
+      <AccountHeader />
       <form onSubmit={e => handleSubmit(e)} className="stellarForm">
         <label htmlFor="key">
           <h2>Enter Stellar Key</h2>
@@ -44,11 +46,13 @@ function StellarHome(props) {
           onChange={e => setKey(e.target.value)}
           required
         />
-        <button type="submit" className="formSubmitButton">Submit</button>
+        <button type="submit" className="formSubmitButton">
+          Submit
+        </button>
       </form>
       <form className="stellarForm">
         <label>
-        <h2>Don't Have A Key?</h2>
+          <h2>Don't Have A Key?</h2>
         </label>
         <button
           onClick={e => createStellarAccount(e)}
@@ -62,7 +66,7 @@ function StellarHome(props) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  stellar: state.stellar,
+  stellar: state.stellar
 });
 
 const mapDispatchToProps = dispatch => ({

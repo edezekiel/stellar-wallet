@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import getAccountDetails from "../stellarSDK/getAccountDetails";
 
 import Layout from "./Layout";
+import AccountHeader from "./AccountHeader";
 
 function StellarAccount(props) {
   const [balances, setBalances] = useState(null);
@@ -16,21 +17,13 @@ function StellarAccount(props) {
           resp.name === "Error" ? alert(resp) : setBalances(resp)
         );
       }
-    }, [props.stellar]
+    },
+    [props.stellar]
   );
 
   return (
     <Layout>
-      {props.stellar === null || props.stellar.secretKey === null ? (
-        <h1>
-          <Link to="/">Enter</Link> Your Stellar Key
-        </h1>
-      ) : (
-        <>
-          <h1>Your Account: </h1>
-          <h2>{props.stellar.secretKey.slice(0, 10) + "..."}</h2>
-        </>
-      )}
+      <AccountHeader />
 
       <section className="stellarAccount">
         <h2>Balance:</h2>
@@ -42,7 +35,6 @@ function StellarAccount(props) {
             ))
           : null}
       </section>
-
     </Layout>
   );
 }

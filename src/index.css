@@ -23,7 +23,7 @@ body, main, .layout, nav, .stellarForm {
 }
 
 .layoutBody {
-  margin: 10vh 0 20vh 0;
+  margin: 5vh 0 20vh 0;
   width: 100%;
   display: flex;
   flex-direction: column;
