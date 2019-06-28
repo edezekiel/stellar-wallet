@@ -1,9 +1,9 @@
 export default function stellarReducer(state = null, action) {
   switch(action.type) {
-    case 'ADD_KEY':
+    case 'ADD_SECRET_KEY':
       return {
         ...state,
-        action.key
+        secretKey: action.secretKey
       }
     default:
       return state

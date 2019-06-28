@@ -1,9 +1,7 @@
 import { combineReducers } from "redux";
 
-import keyReducer from "./keyReducer";
-import txReducer from "./txReducer";
+import stellarReducer from "./stellarReducer";
 
 export default combineReducers({
-  key: keyReducer,
-  tx: txReducer
+  stellar: stellarReducer,
 });
