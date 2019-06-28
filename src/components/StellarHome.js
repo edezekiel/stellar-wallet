@@ -8,7 +8,7 @@ import { createPair } from "../stellarSDK/createPair";
 
 import Layout from "./Layout";
 
-function StellarForm(props) {
+function StellarHome(props) {
   const [key, setKey] = useState(null);
 
   const handleSubmit = e => {
@@ -71,5 +71,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(StellarForm)
+  )(StellarHome)
 );
