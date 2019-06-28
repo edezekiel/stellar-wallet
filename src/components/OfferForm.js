@@ -1,10 +1,10 @@
 import React from "react";
 
-function PaymentForm(props) {
+function OfferForm(props) {
   return (
     <form onSubmit={e => props.handleSubmit(e)} className="stellarForm">
       <label>
-        <h2 className="formTitle">Payment Form</h2>
+        <h2 className="formTitle">Sell Offer Form</h2>
       </label>
       <label htmlFor="destination">
         <h2>*Destination (Key)</h2>
@@ -46,4 +46,4 @@ function PaymentForm(props) {
   );
 }
 
-export default PaymentForm;
+export default OfferForm;
