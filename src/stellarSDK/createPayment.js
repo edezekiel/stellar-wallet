@@ -25,6 +25,7 @@ export default async function createPayment(tx) {
   try {
     const transactionResult = await server.submitTransaction(transaction);
     console.log("Success! Results:");
+    return transactionResult
   } catch (error) {
     console.error("Something went wrong!", error);
   }

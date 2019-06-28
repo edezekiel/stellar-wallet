@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createTx, addKey } from "../redux/actions";
+import { createTx } from "../redux/actions";
 
 import createPayment from "../stellarSDK/createPayment";
 
