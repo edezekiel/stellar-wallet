@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addDestinationSecret } from "../redux/actions";
+import { addUnlockXDR } from "../redux/actions";
 
 import unlock from "../stellarSDK/unlock";
 
@@ -16,7 +17,9 @@ function SignUnlockForm(props) {
     e.preventDefault();
     alert("Please wait, the Unlock contract is being signed.");
     props.addDestinationSecret(unlockTx.destinationSecret);
-    unlock(props.stellar.escrowPair, unlockTx);
+    unlock(props.stellar.escrowPair, unlockTx)
+      .then(resp => props.addUnlockXDR(resp))
+      .then(props.history.push("/account"));
   };
 
   return (
@@ -54,7 +57,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addDestinationSecret: destinationSecret => dispatch(addDestinationSecret(destinationSecret))
+  addDestinationSecret: destinationSecret =>
+    dispatch(addDestinationSecret(destinationSecret)),
+  addUnlockXDR: unlockXDR => dispatch(addUnlockXDR(unlockXDR))
 });
 
 export default withRouter(

@@ -10,3 +10,7 @@ export const addDestinationSecret = destinationSecret => {
 export const addEscrowPair = escrowPair => {
   return { type: "ADD_ESCROW_PAIR", escrowPair: escrowPair };
 };
+
+export const addUnlockXDR = unlockXDR => {
+  return { type: "ADD_UNLOCK_XDR", unlockXDR: unlockXDR };
+};

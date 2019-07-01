@@ -8,7 +8,7 @@ import recovery from "../stellarSDK/recovery";
 function SignRecoveryForm(props) {
   const [recoveryDate, setRecoveryDate] = useState(null);
 
-  console.log("from the Sign Recovery Form", props.stellar)
+  console.log("from the Sign Recovery Form", props.stellar);
 
   const handleSubmit = e => {
     e.preventDefault();

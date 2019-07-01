@@ -20,6 +20,11 @@ export default function stellarReducer(state = initial, action) {
         ...state,
         escrowPair: action.escrowPair
       }
+    case 'ADD_UNLOCK_XDR':
+      return {
+        ...state,
+        unlockXDR: action.unlockXDR
+      }
     default:
       return state
   }

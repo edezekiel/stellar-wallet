@@ -53,7 +53,7 @@ export default async function unlock(escrowPair, unlockTx) {
 
   const transaction = new StellarSdk.TransactionBuilder(escrowAccount, {
     fee: baseFee,
-    timebounds: timebounds,
+    // timebounds: timebounds,
     sequence: (parseInt(escrowAccount.sequence) + 1).toString()
   })
 
