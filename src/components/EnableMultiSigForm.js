@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import enableMultiSig from "../stellarSDK/enableMultiSig";
 
-function EnableMultiSig(props) {
+function EnableMultiSigForm(props) {
   const [destination, setDestination] = useState(null)
   const handleSubmit = e => {
     e.preventDefault();
@@ -38,4 +38,4 @@ const mapStateToProps = (state, ownProps) => ({
   stellar: state.stellar
 });
 
-export default withRouter(connect(mapStateToProps)(EnableMultiSig));
+export default withRouter(connect(mapStateToProps)(EnableMultiSigForm));
