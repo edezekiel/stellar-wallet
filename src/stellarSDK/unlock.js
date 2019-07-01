@@ -79,7 +79,7 @@ export default async function unlock(escrowPair, destination) {
       .toEnvelope()
       .toXDR()
       .toString("base64");
-    console.log("Success! Results:", transactionXDR);
+    console.log("FN: unlock", "Success! Results:", transactionXDR);
     return transactionXDR;
   } catch (error) {
     console.error("Something went wrong!", error);

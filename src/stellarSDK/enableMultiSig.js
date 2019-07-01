@@ -37,7 +37,7 @@ export default async function enableMultiSig(
 
   try {
     const transactionResult = await server.submitTransaction(transaction);
-    console.log("Success! Results:", transactionResult);
+    console.log("FN: enableMultiSig", "Success! Results:", transactionResult);
   } catch (error) {
     console.error("Something went wrong!", error);
   }

@@ -19,9 +19,9 @@ export default async function recovery(secretKey, escrowPair, destination) {
   const sourcePublicKey = StellarSdk.Keypair.fromSecret(secretKey).publicKey();
 
   // Minimum time: Recovery Date (D+T+R)
-  // In this example, the unlock date was set to 1 minute from now.
-  // So the recovery date will 5 minutes from now.
-  // This gives the destination a 4 minute "Recovery Period." The destination
+  // In the unlock function, the Unlock Date is set to 1 minute in the future.
+  // Here, the Recovery Date is set to 5 minutes in the future.
+  // This gives the Destination a 4 minute "Recovery Period." The destination
   // can submit transaction 3 (unlock) during the Recovery Period.
   const minTime = Date.now() + 300;
   // The maximum time is set to 0, to denote that the transaction does not have
@@ -79,7 +79,7 @@ export default async function recovery(secretKey, escrowPair, destination) {
       .toEnvelope()
       .toXDR()
       .toString("base64");
-    console.log("Success! Results:", transactionXDR);
+    console.log("FN: recovery", "Success! Results:", transactionXDR);
     return transactionXDR;
   } catch (error) {
     console.error("Something went wrong!", error);
