@@ -9,7 +9,7 @@ function EnableMultiSig(props) {
   const handleSubmit = e => {
     e.preventDefault();
     alert("Please wait, multi-sig is being enabled on your escrow account.");
-    enableMultiSig(props.stellar.secretKey, props.stellar.escrowPair, destination)
+    enableMultiSig(props.stellar.escrowPair, destination)
       .then(props.history.push("/account"));
   };
 

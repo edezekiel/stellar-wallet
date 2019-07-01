@@ -1,7 +1,6 @@
 import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 
 export default async function createEscrowAccount(
-  accountSecret,
   escrowPair,
   destination
 ) {
@@ -14,28 +13,21 @@ export default async function createEscrowAccount(
   })
     .addOperation(
       StellarSdk.Operation.setOptions({
-        masterWeight: 0, // Escrow account has a weight of 0, no rights :)
-        lowThreshold: 1,
-        medThreshold: 2, // payment is medium threshold
-        highThreshold: 2
-      })
-    )
-    .addOperation(
-      StellarSdk.Operation.setOptions({
-        signer: {
-          ed25519PublicKey: StellarSdk.Keypair.fromSecret(
-            accountSecret
-          ).publicKey(),
-          weight: 1
-        }
-      })
-    )
-    .addOperation(
-      StellarSdk.Operation.setOptions({
         signer: {
           ed25519PublicKey: destination,
           weight: 1
         }
+      })
+    )
+    // Thresholds are set to 2. This makes is so that all and any type of
+    // transactions originating from the escrow account now require all
+    // signatures to have a total weight of 2.
+    .addOperation(
+      StellarSdk.Operation.setOptions({
+        masterWeight: 1, // Leveling out its weight with that of the destination account
+        lowThreshold: 2,
+        medThreshold: 2,
+        highThreshold: 2
       })
     )
     .setTimeout(TimeoutInfinite)
