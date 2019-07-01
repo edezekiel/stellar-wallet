@@ -10,6 +10,11 @@ export default function stellarReducer(state = initial, action) {
         ...state,
         secretKey: action.secretKey
       }
+    case 'ADD_DESTINATION_SECRET':
+      return {
+        ...state,
+        destinationSecret: action.destinationSecret
+      }
     case 'ADD_ESCROW_PAIR':
       return {
         ...state,
