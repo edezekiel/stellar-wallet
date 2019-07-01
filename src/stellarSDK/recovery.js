@@ -9,7 +9,7 @@ import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 // control of the escrow account to the origin. Transaction 4 can only be
 // submitted after the recovery date (D+T+R), and it has no expiration date.
 
-export default async function unlock(secretKey, escrowPair, destination) {
+export default async function recovery(secretKey, escrowPair, destination) {
   StellarSdk.Network.useTestNetwork();
   const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
   const baseFee = await server.fetchBaseFee();
