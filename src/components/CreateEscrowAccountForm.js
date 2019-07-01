@@ -25,7 +25,7 @@ function CreateEscrowAccountForm(props) {
 
   return (
     <form className="stellarForm">
-      <h2>Create Escrow Account Form</h2>
+      <h2>Create Escrow Account</h2>
       <button className="formSubmitButton" onClick={e => handleSubmit(e)}>
         Submit
       </button>

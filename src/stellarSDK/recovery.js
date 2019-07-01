@@ -9,11 +9,17 @@ import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 // control of the escrow account to the origin. Transaction 4 can only be
 // submitted after the recovery date (D+T+R), and it has no expiration date.
 
-export default async function recovery(secretKey, escrowPair, destination) {
+export default async function recovery(secretKey, escrowPair, recoveryTx) {
   StellarSdk.Network.useTestNetwork();
   const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
   const baseFee = await server.fetchBaseFee();
   const escrowAccount = await server.loadAccount(escrowPair.publicKey());
+
+  const destinationKeys = StellarSdk.Keypair.fromSecret(unlockTx.destinationSecret);
+
+  const destinationPublicKey = await server.loadAccount(
+    destinationKeys.publicKey()
+  );
 
   const sourceKeys = StellarSdk.Keypair.fromSecret(secretKey);
   const sourcePublicKey = StellarSdk.Keypair.fromSecret(secretKey).publicKey();
@@ -23,7 +29,7 @@ export default async function recovery(secretKey, escrowPair, destination) {
   // Here, the Recovery Date is set to 5 minutes in the future.
   // This gives the Destination a 4 minute "Recovery Period." The destination
   // can submit transaction 3 (unlock) during the Recovery Period.
-  const minTime = Date.now() + 300;
+  const minTime = Date.now() + parseInt(recoveryTx.recoveryDate);
   // The maximum time is set to 0, to denote that the transaction does not have
   // an expiration date.
   const maxTime = 0;
@@ -51,7 +57,7 @@ export default async function recovery(secretKey, escrowPair, destination) {
     .addOperation(
       StellarSdk.Operation.setOptions({
         signer: {
-          ed25519PublicKey: destination,
+          ed25519PublicKey: destinationPublicKey,
           weight: 0
         }
       })

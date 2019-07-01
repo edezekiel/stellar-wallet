@@ -19,40 +19,43 @@ import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 // D - the date upon which the lock-up period starts.
 // R - the recovery period
 
-export default async function unlock(escrowPair, destination) {
+export default async function unlock(escrowPair, unlockTx) {
   StellarSdk.Network.useTestNetwork();
   const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
   const baseFee = await server.fetchBaseFee();
+
+  const destinationKeys = StellarSdk.Keypair.fromSecret(
+    unlockTx.destinationSecret
+  );
+
   const escrowAccount = await server.loadAccount(escrowPair.publicKey());
 
+  const destinationAccount = await server.loadAccount(
+    destinationKeys.publicKey()
+  );
+
+  const destination = destinationKeys.publicKey()
   // The unlock date (D+T) is the first date that the unlock transaction can be
   // submitted. If Transaction 3 (this transaction) is submitted before the
   // unlock date, the transaction will not be valid.
 
   // In this example, the unlock date is set to 1 minute from now.
-  const minTime = Date.now() + 60;
+  const minTime = Date.now() + parseInt(unlockTx.unlockDate);
   // The maximum time is set to 0, to denote that the transaction does not have
   // an expiration date.
   const maxTime = 0;
-
   const timebounds = {
     minTime: minTime.toString(),
     maxTime: maxTime.toString()
   };
 
+  console.log(minTime, unlockTx.unlockDate, timebounds)
+
   const transaction = new StellarSdk.TransactionBuilder(escrowAccount, {
     fee: baseFee,
-    timebounds: { timebounds },
+    timebounds: timebounds,
     sequence: (parseInt(escrowAccount.sequence) + 1).toString()
   })
-    .addOperation(
-      StellarSdk.Operation.setOptions({
-        masterWeight: 0, // Leveling out its weight with the destination account
-        lowThreshold: 1,
-        medThreshold: 1,
-        highThreshold: 1
-      })
-    )
 
     // Eventual Signer: Destination account.
     // I.e., after the end of the lock-up time period, the only accound that is
@@ -60,8 +63,12 @@ export default async function unlock(escrowPair, destination) {
     // destination account.
     .addOperation(
       StellarSdk.Operation.setOptions({
+        masterWeight: 0, // Leveling out its weight with the destination account
+        lowThreshold: 1,
+        medThreshold: 1,
+        highThreshold: 1,
         signer: {
-          ed25519PublicKey: destination,
+          ed25519PublicKey: destinationKeys.publicKey(),
           weight: 1
         }
       })
@@ -78,7 +85,7 @@ export default async function unlock(escrowPair, destination) {
     const transactionXDR = transaction
       .toEnvelope()
       .toXDR()
-      .toString("base64");
+      .toString();
     console.log("FN: unlock", "Success! Results:", transactionXDR);
     return transactionXDR;
   } catch (error) {

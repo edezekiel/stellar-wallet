@@ -19,7 +19,7 @@ function EnableMultiSigForm(props) {
         <h2 className="formTitle">Enable Multi Signature on Escrow Account</h2>
       </label>
       <label htmlFor="destination">
-        <h2>*Destination (Key)</h2>
+        <h2>*Destination (Public Key)</h2>
       </label>
       <input
         type="text"

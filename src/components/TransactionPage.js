@@ -7,6 +7,7 @@ import AccountHeader from './AccountHeader'
 import PaymentForm from "./PaymentForm";
 import CreateEscrowAccountForm from "./CreateEscrowAccountForm";
 import EnableMultiSigForm from './EnableMultiSigForm'
+import SignUnlockForm from './SignUnlockForm'
 
 function TransactionPage(props) {
   return (
@@ -19,6 +20,7 @@ function TransactionPage(props) {
           <PaymentForm />
           <CreateEscrowAccountForm />
           <EnableMultiSigForm />
+          <SignUnlockForm />
         </>
       )}
     </Layout>

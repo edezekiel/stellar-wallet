@@ -25,10 +25,10 @@ function PaymentForm(props) {
   return (
     <form onSubmit={e => createPaymentTX(e)} className="stellarForm">
       <label>
-        <h2 className="formTitle">Simple Payment Form</h2>
+        <h2 className="formTitle">Simple Payment</h2>
       </label>
       <label htmlFor="destination">
-        <h2>*Destination (Key)</h2>
+        <h2>*Destination (Public Key)</h2>
       </label>
       <input
         type="text"

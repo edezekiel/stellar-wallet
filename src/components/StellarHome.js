@@ -36,7 +36,7 @@ function StellarHome(props) {
       <AccountHeader />
       <form onSubmit={e => handleSubmit(e)} className="stellarForm">
         <label htmlFor="key">
-          <h2>Enter Stellar Key</h2>
+          <h2>Enter Stellar Secret Key</h2>
         </label>
         <textarea
           type="textarea"

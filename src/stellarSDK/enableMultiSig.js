@@ -1,13 +1,11 @@
 import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 
-export default async function enableMultiSig(
-  escrowPair,
-  destination
-) {
+export default async function enableMultiSig(escrowPair, destination) {
   StellarSdk.Network.useTestNetwork();
   const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
   const baseFee = await server.fetchBaseFee();
   const escrowAccount = await server.loadAccount(escrowPair.publicKey());
+  
   const transaction = new StellarSdk.TransactionBuilder(escrowAccount, {
     fee: baseFee
   })
