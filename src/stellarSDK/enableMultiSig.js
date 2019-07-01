@@ -1,6 +1,6 @@
 import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 
-export default async function createEscrowAccount(
+export default async function enableMultiSig(
   escrowPair,
   destination
 ) {

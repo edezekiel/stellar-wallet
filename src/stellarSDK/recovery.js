@@ -24,6 +24,8 @@ export default async function unlock(secretKey, escrowPair, destination) {
   // This gives the destination a 4 minute "Recovery Period." The destination
   // can submit transaction 3 (unlock) during the Recovery Period.
   const minTime = Date.now() + 300;
+  // The maximum time is set to 0, to denote that the transaction does not have
+  // an expiration date.
   const maxTime = 0;
 
   const timebounds = {
@@ -33,7 +35,8 @@ export default async function unlock(secretKey, escrowPair, destination) {
 
   const transaction = new StellarSdk.TransactionBuilder(escrowAccount, {
     fee: baseFee,
-    timebounds: { timebounds }
+    timebounds: { timebounds },
+    sequence: (parseInt(escrowAccount.sequence) + 1).toString()
   })
     // Resets weight for signing to only require origin account signature.
     .addOperation(
@@ -71,8 +74,13 @@ export default async function unlock(secretKey, escrowPair, destination) {
   transaction.sign(escrowPair);
 
   try {
-    const transactionResult = await server.submitTransaction(transaction);
-    console.log("Success! Results:", transactionResult);
+    // Save as an XDR string
+    const transactionXDR = transaction
+      .toEnvelope()
+      .toXDR()
+      .toString("base64");
+    console.log("Success! Results:", transactionXDR);
+    return transactionXDR;
   } catch (error) {
     console.error("Something went wrong!", error);
   }

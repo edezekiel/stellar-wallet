@@ -13,11 +13,11 @@ import StellarSdk, { TimeoutInfinite } from "stellar-sdk";
 // ensured by the feature that both transactions have the same sequence number.
 
 // Variables
-  // N, M - the sequence number of escrow account and source account,
-  // respectively; N + 1 means the next sequence transaction number, and so on.
-  // T - the lock-up period
-  // D - the date upon which the lock-up period starts.
-  // R - the recovery period
+// N, M - the sequence number of escrow account and source account,
+// respectively; N + 1 means the next sequence transaction number, and so on.
+// T - the lock-up period
+// D - the date upon which the lock-up period starts.
+// R - the recovery period
 
 export default async function unlock(escrowPair, destination) {
   StellarSdk.Network.useTestNetwork();
@@ -42,7 +42,8 @@ export default async function unlock(escrowPair, destination) {
 
   const transaction = new StellarSdk.TransactionBuilder(escrowAccount, {
     fee: baseFee,
-    timebounds: { timebounds }
+    timebounds: { timebounds },
+    sequence: (parseInt(escrowAccount.sequence) + 1).toString()
   })
     .addOperation(
       StellarSdk.Operation.setOptions({
@@ -73,8 +74,13 @@ export default async function unlock(escrowPair, destination) {
   transaction.sign(escrowPair);
 
   try {
-    const transactionResult = await server.submitTransaction(transaction);
-    console.log("Success! Results:", transactionResult);
+    // Save as an XDR string
+    const transactionXDR = transaction
+      .toEnvelope()
+      .toXDR()
+      .toString("base64");
+    console.log("Success! Results:", transactionXDR);
+    return transactionXDR;
   } catch (error) {
     console.error("Something went wrong!", error);
   }
