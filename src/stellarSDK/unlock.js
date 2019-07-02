@@ -34,26 +34,21 @@ export default async function unlock(escrowPair, unlockTx) {
     destinationKeys.publicKey()
   );
 
-  const destination = destinationKeys.publicKey()
+  const destination = destinationKeys.publicKey();
   // The unlock date (D+T) is the first date that the unlock transaction can be
   // submitted. If Transaction 3 (this transaction) is submitted before the
   // unlock date, the transaction will not be valid.
 
-  // In this example, the unlock date is set to 1 minute from now.
-  const minTime = Date.now() + parseInt(unlockTx.unlockDate);
-  // The maximum time is set to 0, to denote that the transaction does not have
-  // an expiration date.
-  const maxTime = 0;
-  const timebounds = {
-    minTime: minTime.toString(),
-    maxTime: maxTime.toString()
-  };
-
-  console.log(minTime, unlockTx.unlockDate, timebounds)
-
   const transaction = new StellarSdk.TransactionBuilder(escrowAccount, {
     fee: baseFee,
-    // timebounds: timebounds,
+    timebounds: {
+      minTime: (
+        Math.floor(Date.now() / 1000) + parseInt(unlockTx.unlockDate)
+      ).toString(),
+      // The maximum time is set to 0, to denote that the transaction does not have
+      // an expiration date.
+      maxTime: (0).toString()
+    },
     sequence: (parseInt(escrowAccount.sequence) + 1).toString()
   })
 

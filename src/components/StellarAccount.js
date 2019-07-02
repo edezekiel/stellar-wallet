@@ -46,6 +46,25 @@ function StellarAccount(props) {
           <div>{props.stellar.escrowPair.publicKey()}</div>
         ) : null}
       </section>
+
+      <section className="stellarAccount">
+        <h2>Most Recent Signed Unlock XDR:</h2>
+        {props.stellar !== null && props.stellar.unlockXDR !== null ? (
+          <div>
+            <p>Copy this string:</p>
+            <div>{props.stellar.unlockXDR}</div>
+            <p>
+              Import and sign using{" "}
+              <a
+                target="blank"
+                href="https://www.stellar.org/laboratory/#txsigner?network=test"
+              >
+                Stellar Laboratory
+              </a>
+            </p>
+          </div>
+        ) : null}
+      </section>
     </Layout>
   );
 }

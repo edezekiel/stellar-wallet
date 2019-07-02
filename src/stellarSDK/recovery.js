@@ -34,7 +34,10 @@ export default async function recovery(
   // Here, the Recovery Date is set to 5 minutes in the future.
   // This gives the Destination a 4 minute "Recovery Period." The destination
   // can submit transaction 3 (unlock) during the Recovery Period.
-  const minTime = Date.now() + parseInt(recoveryDate);
+  const minTime = (
+    Math.floor(Date.now() / 1000) + parseInt(recoveryDate)
+  ).toString();
+
   // The maximum time is set to 0, to denote that the transaction does not have
   // an expiration date.
   const maxTime = 0;

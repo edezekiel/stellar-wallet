@@ -1,6 +1,7 @@
 const initial = {
   secretKey: null,
-  escrowPair: null
+  escrowPair: null,
+  unlockXDR: null
 }
 
 export default function stellarReducer(state = initial, action) {
