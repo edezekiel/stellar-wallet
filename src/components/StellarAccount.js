@@ -65,6 +65,25 @@ function StellarAccount(props) {
           </div>
         ) : null}
       </section>
+
+      <section className="stellarAccount">
+        <h2>Most Recent Signed Recovery XDR:</h2>
+        {props.stellar !== null && props.stellar.recoveryXDR !== null ? (
+          <div>
+            <p>Copy this string:</p>
+            <div>{props.stellar.recoveryXDR}</div>
+            <p>
+              Import and sign using{" "}
+              <a
+                target="blank"
+                href="https://www.stellar.org/laboratory/#txsigner?network=test"
+              >
+                Stellar Laboratory
+              </a>
+            </p>
+          </div>
+        ) : null}
+      </section>
     </Layout>
   );
 }

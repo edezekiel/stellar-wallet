@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { addRecoveryXDR } from "../redux/actions";
 
 import recovery from "../stellarSDK/recovery";
 
@@ -18,7 +19,9 @@ function SignRecoveryForm(props) {
       props.stellar.escrowPair,
       props.stellar.destinationSecret,
       recoveryDate
-    );
+    )
+      .then(resp => props.addRecoveryXDR(resp))
+      .then(props.history.push("/account"));
   };
 
   return (
@@ -44,4 +47,13 @@ const mapStateToProps = (state, ownProps) => ({
   stellar: state.stellar
 });
 
-export default withRouter(connect(mapStateToProps)(SignRecoveryForm));
+const mapDispatchToProps = dispatch => ({
+  addRecoveryXDR: recoveryXDR => dispatch(addRecoveryXDR(recoveryXDR))
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignRecoveryForm)
+);

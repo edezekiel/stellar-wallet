@@ -14,3 +14,7 @@ export const addEscrowPair = escrowPair => {
 export const addUnlockXDR = unlockXDR => {
   return { type: "ADD_UNLOCK_XDR", unlockXDR: unlockXDR };
 };
+
+export const addRecoveryXDR = recoveryXDR => {
+  return { type: "ADD_RECOVERY_XDR", recoveryXDR: recoveryXDR };
+};

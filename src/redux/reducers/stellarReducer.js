@@ -1,7 +1,8 @@
 const initial = {
   secretKey: null,
   escrowPair: null,
-  unlockXDR: null
+  unlockXDR: null,
+  recoveryXDR: null
 }
 
 export default function stellarReducer(state = initial, action) {
@@ -25,6 +26,11 @@ export default function stellarReducer(state = initial, action) {
       return {
         ...state,
         unlockXDR: action.unlockXDR
+      }
+    case 'ADD_RECOVERY_XDR':
+      return {
+        ...state,
+        recoveryXDR: action.recoveryXDR
       }
     default:
       return state
