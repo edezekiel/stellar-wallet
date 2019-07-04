@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
-import getAccountDetails from "../stellarSDK/getAccountDetails";
+import getAccountBalances from "../stellarSDK/getAccountBalances";
 import getTxHistory from "../stellarSDK/getTxHistory";
 
 import Layout from "./Layout";
@@ -14,7 +14,7 @@ function StellarAccount(props) {
   useEffect(
     () => {
       if (props.stellar !== null && props.stellar.secretKey !== null) {
-        getAccountDetails(props.stellar.secretKey).then(resp =>
+        getAccountBalances(props.stellar.secretKey).then(resp =>
           resp.name === "Error" ? alert(resp) : setBalances(resp)
         );
         getTxHistory(props.stellar.secretKey);
