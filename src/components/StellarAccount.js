@@ -33,9 +33,23 @@ function StellarAccount(props) {
         <h2>Balance:</h2>
         {balances !== null
           ? balances.map((balance, i) => (
-              <div key={i}>
-                Type: {balance.asset_type}, Balance: {balance.balance}
-              </div>
+              <ul key={i}>
+                <li>
+                  Type: {balance.asset_type}, Balance: {balance.balance}
+                </li>
+                <li>
+                  Buying Liabilities:{" "}
+                  {balance.buying_liabilities
+                    ? balance.buying_liabilities
+                    : null}
+                </li>
+                <li>
+                  Selling Liabilities:{" "}
+                  {balance.selling_liabilities
+                    ? balance.selling_liabilities
+                    : null}
+                </li>
+              </ul>
             ))
           : null}
       </section>

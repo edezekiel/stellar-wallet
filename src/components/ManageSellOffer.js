@@ -10,12 +10,6 @@ function ManageSellOffer(props) {
     e.preventDefault();
     alert("Please wait, the Sell Offer is being created.");
     manageSellOffer(props.stellar.secretKey)
-    manageSellOffer(props.stellar.secretKey)
-    manageSellOffer(props.stellar.secretKey)
-    manageSellOffer(props.stellar.secretKey)
-    manageSellOffer(props.stellar.secretKey)
-    manageSellOffer(props.stellar.secretKey)
-    manageSellOffer(props.stellar.secretKey)
   };
 
   return (
