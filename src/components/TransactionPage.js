@@ -10,7 +10,7 @@ import EnableMultiSigForm from "./EnableMultiSigForm";
 import SignUnlockForm from "./SignUnlockForm";
 import SignRecoveryForm from "./SignRecoveryForm";
 import ManageSellOffer from "./ManageSellOffer";
-import ManageDataTimeBound from "../ManageDataTimebound";
+import ManageDataTimeBound from "./ManageDataTimebound";
 
 function TransactionPage(props) {
   return (
