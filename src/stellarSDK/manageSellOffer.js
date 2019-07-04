@@ -17,7 +17,7 @@ export default async function manageSellOffer(secretKey) {
           "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB"
         ),
         buying: StellarSdk.Asset.native(),
-        buyAmount: "1",
+        amount: "1",
         price: {n: 5, d: 1},
         offerId: 0
       })

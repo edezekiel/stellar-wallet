@@ -9,6 +9,7 @@ import CreateEscrowAccountForm from "./CreateEscrowAccountForm";
 import EnableMultiSigForm from "./EnableMultiSigForm";
 import SignUnlockForm from "./SignUnlockForm";
 import SignRecoveryForm from "./SignRecoveryForm";
+import ManageSellOffer from "./ManageSellOffer";
 
 function TransactionPage(props) {
   return (
@@ -21,6 +22,7 @@ function TransactionPage(props) {
           <EnableMultiSigForm />
           <SignUnlockForm />
           <SignRecoveryForm />
+          <ManageSellOffer />
         </>
       )}
     </Layout>

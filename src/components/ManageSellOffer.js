@@ -5,11 +5,17 @@ import { withRouter } from "react-router-dom";
 import manageSellOffer from "../stellarSDK/manageSellOffer";
 
 function ManageSellOffer(props) {
-  
+
   const handleSubmit = e => {
     e.preventDefault();
     alert("Please wait, the Sell Offer is being created.");
-    manageSellOffer(props.stellar.secretKey).then(console.log());
+    manageSellOffer(props.stellar.secretKey)
+    manageSellOffer(props.stellar.secretKey)
+    manageSellOffer(props.stellar.secretKey)
+    manageSellOffer(props.stellar.secretKey)
+    manageSellOffer(props.stellar.secretKey)
+    manageSellOffer(props.stellar.secretKey)
+    manageSellOffer(props.stellar.secretKey)
   };
 
   return (
