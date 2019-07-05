@@ -24,6 +24,7 @@ function TransactionPage(props) {
           <SignUnlockForm />
           <SignRecoveryForm />
           <ManageSellOffer />
+          <ManageDataTimeBound />
         </>
       )}
     </Layout>

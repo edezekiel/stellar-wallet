@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addRecoveryXDR } from "../redux/actions";
 
@@ -8,8 +8,6 @@ import recovery from "../stellarSDK/recovery";
 
 function SignRecoveryForm(props) {
   const [recoveryDate, setRecoveryDate] = useState(null);
-
-  console.log("from the Sign Recovery Form", props.stellar);
 
   const handleSubmit = e => {
     e.preventDefault();

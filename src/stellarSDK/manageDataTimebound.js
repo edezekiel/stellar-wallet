@@ -16,23 +16,18 @@ export default async function manageDataTimebound(secretKey, data) {
   })
     .addOperation(
       StellarSdk.Operation.manageData({
-        entryName: data.entryName,
-        entryValue: data.entryValue
+        name: data.entryName,
+        value: data.entryValue
       })
     )
-    .setTimeout(180)
     .build();
 
   transaction.sign(sourceKeys);
 
   try {
-    const transactionResultXDR = await server
-      .submitTransaction(transaction)
-      .toEnvelope()
-      .toXDR()
-      .toString("base64");
-    console.log("Success! Results:", transactionResultXDR);
-    return transactionXDR;
+    const transactionResult = await server.submitTransaction(transaction);
+    // console.log("Success! Results:", transactionResult);
+    // return transactionResult;
   } catch (error) {
     console.error("Something went wrong!", error);
   }

@@ -9,14 +9,16 @@ function ManageDateTimebound(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    alert("Please wait, the Sell Offer is being created.");
+    alert("Please wait, your Data Entry is being created.");
     manageDataTimebound(props.stellar.secretKey, data);
   };
+
+  // The stellar function automatically sets the timebound to five minutes
 
   return (
     <form className="stellarForm">
       <label>
-        <h2>Manage Sell Offer</h2>
+        <h2>Manage Data</h2>
       </label>
       <label htmlFor="memo">
         <h2>Entry Name</h2>

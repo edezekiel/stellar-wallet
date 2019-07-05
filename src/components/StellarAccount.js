@@ -23,8 +23,6 @@ function StellarAccount(props) {
     [props.stellar, txHistory]
   );
 
-  console.log(props.stellar);
-
   return (
     <Layout>
       <AccountHeader />
