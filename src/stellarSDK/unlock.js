@@ -35,6 +35,7 @@ export default async function unlock(escrowPair, unlockTx) {
   );
 
   const destination = destinationKeys.publicKey();
+  console.log(destinationAccount, destination);
   // The unlock date (D+T) is the first date that the unlock transaction can be
   // submitted. If Transaction 3 (this transaction) is submitted before the
   // unlock date, the transaction will not be valid.

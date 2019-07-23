@@ -27,6 +27,8 @@ export default async function recovery(
   );
 
   const sourceKeys = StellarSdk.Keypair.fromSecret(secretKey);
+  console.log(destinationPublicKey, sourceKeys)
+
   const sourcePublicKey = StellarSdk.Keypair.fromSecret(secretKey).publicKey();
 
   // Minimum time: Recovery Date (D+T+R)

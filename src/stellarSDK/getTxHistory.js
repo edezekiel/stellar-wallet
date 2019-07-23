@@ -11,7 +11,6 @@ export default async function getTxHistory(secretKey) {
     .then(function (transactionResult) {
       //page 1
       return transactionResult
-      console.log("Page 1", transactionResult.records);
     })
     .catch(function (err) {
       console.log(err)

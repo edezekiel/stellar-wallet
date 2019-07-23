@@ -79,6 +79,10 @@ nav {
   border-radius: 10px;
 }
 
+.stellarAccount ul {
+  list-style: none;
+}
+
 .stellarForm label, .stellarForm textarea {
   margin: 10px;
   outline: none;

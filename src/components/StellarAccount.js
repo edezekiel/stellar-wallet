@@ -17,7 +17,8 @@ function StellarAccount(props) {
         getAccountBalances(props.stellar.secretKey).then(resp =>
           resp.name === "Error" ? alert(resp) : setBalances(resp)
         );
-        getTxHistory(props.stellar.secretKey);
+        getTxHistory(props.stellar.secretKey)
+        .then(resp => setTxHistory(resp))
       }
     },
     [props.stellar, txHistory]

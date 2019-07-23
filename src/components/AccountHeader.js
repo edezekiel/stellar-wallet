@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import getPublicKey from "../stellarSDK/getPublicKey";
 
 function AccountHeader(props) {
   return (
@@ -13,7 +14,8 @@ function AccountHeader(props) {
       ) : (
         <>
           <h1>Your Account: </h1>
-          <h2>{props.stellar.secretKey.slice(0, 10) + "..."}</h2>
+          <h3>Public Key: {getPublicKey(props.stellar.secretKey)}</h3>
+          <h3>SecretKey: {props.stellar.secretKey}</h3>
         </>
       )}
     </>
